@@ -1,13 +1,13 @@
 package com.around.me.support.core.support;
 
-import around.me.common.core.constants.HeaderConstants;
-import around.me.common.core.context.ResponseContextHolder;
-import around.me.common.core.dto.Response;
-import around.me.common.core.utils.HttpServletUtils;
+import com.around.me.support.core.constants.HeaderConstants;
+import com.around.me.support.core.context.ResponseContextHolder;
+import com.around.me.support.core.dto.Response;
+import com.around.me.support.core.utils.HttpServletUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
