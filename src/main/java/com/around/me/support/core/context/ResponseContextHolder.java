@@ -1,7 +1,6 @@
 package com.around.me.support.core.context;
 
 
-import com.around.me.support.core.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -12,26 +11,28 @@ public class ResponseContextHolder {
 
     private final RestTemplate restTemplate;
 
-    private static User user;
+    private static UserContextHolder userContextHolder;
 
     private static String xAuthToken;
+
+    private static String refreshToken;
 
     /**
      * Get User
      *
      * @return
      */
-    public static User user() {
-        return ResponseContextHolder.user;
+    public static UserContextHolder user() {
+        return ResponseContextHolder.userContextHolder;
     }
 
     /**
      * Set User
      *
-     * @param user
+     * @param userContextHolder
      */
-    public static void user(User user) {
-        ResponseContextHolder.user = user;
+    public static void user(UserContextHolder userContextHolder) {
+        ResponseContextHolder.userContextHolder = userContextHolder;
     }
 
     /**

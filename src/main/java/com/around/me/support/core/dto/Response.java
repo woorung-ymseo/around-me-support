@@ -8,6 +8,9 @@ public class Response<T> {
     @JsonProperty("status")
     private int status;
 
+    @JsonProperty("code")
+    private int code;
+
     @JsonProperty("message")
     private String message;
 
@@ -17,45 +20,60 @@ public class Response<T> {
     @JsonProperty("content")
     private T content;
 
-    protected Response(int status, String message, T content) {
+    protected Response(int status, int code, String message, T content) {
         this.status = status;
+        this.code = code;
         this.message = message;
         this.content = content;
         this.timestamp = System.currentTimeMillis();
     }
 
-    public static <T> Response<T> of(int status, String message, T content) {
+    public static <T> Response<T> of(int status, int code, String message, T content) {
 
-        return new Response<>(status, message, content);
+        return new Response<>(status, code, message, content);
     }
 
-    public static <T> Response<T> of(int status, String message) {
+    public static <T> Response<T> of(int status, int code, String message) {
 
-        return of(status, message, null);
+        return of(status, code, message, null);
     }
 
-    public static <T> Response<T> ok(String message, T content) {
+    public static <T> Response<T> ok(int code, String message, T content) {
 
-        return of(HttpStatus.OK.value(), message, content);
+        return of(HttpStatus.OK.value(), code, message, content);
     }
 
-    public static <T> Response<T> ok(T content) {
+    public static <T> Response<T> ok(int code,T content) {
 
-        return of(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), content);
+        return of(HttpStatus.OK.value(), code, HttpStatus.OK.getReasonPhrase(), content);
     }
 
-    public static <T> Response<T> badRequest(T content) {
+    public static <T> Response<T> badRequest(int code, T content) {
 
-        return badRequest(HttpStatus.BAD_REQUEST.getReasonPhrase(), content);
+        return badRequest(code, HttpStatus.BAD_REQUEST.getReasonPhrase(), content);
     }
 
-    public static <T> Response<T> badRequest(String message, T content) {
+    public static <T> Response<T> badRequest(int code, String message, T content) {
 
-        return of(HttpStatus.BAD_REQUEST.value(), message, content);
+        return of(HttpStatus.BAD_REQUEST.value(), code, message, content);
+    }
+
+    public static <T> Response<T> error(int code, String message, T content) {
+
+        return of(HttpStatus.INTERNAL_SERVER_ERROR.value(), code, message, content);
+    }
+
+    public static <T> Response<T> error(int code, T content) {
+
+        return error(code, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), content);
     }
 
     public int getStatus() {
         return status;
+    }
+
+    public int getCode() {
+        return code;
     }
 
     public String getMessage() {
@@ -69,21 +87,4 @@ public class Response<T> {
     public T getContent() {
         return content;
     }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public void setContent(T content) {
-        this.content = content;
-    }
-
 }
