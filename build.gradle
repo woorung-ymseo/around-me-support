@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+    id 'maven'
 }
 
 group = 'com.around.me.support'
@@ -16,6 +17,15 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "http://3.35.83.253:8081/repository/maven-releases/") {
+            authentication(userName: "admin", password: "1234")
+        }
+    }
 }
 
 dependencies {
