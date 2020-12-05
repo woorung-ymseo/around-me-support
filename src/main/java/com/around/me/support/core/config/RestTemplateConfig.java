@@ -1,5 +1,6 @@
 package com.around.me.support.core.config;
 
+import com.around.me.support.core.support.HttpHeaderBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.springframework.boot.web.client.RestTemplateBuilder;

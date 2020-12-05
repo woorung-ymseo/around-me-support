@@ -1,5 +1,6 @@
 package com.around.me.support.core.dto;
 
+import com.around.me.support.core.support.HttpHeaderBuilder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.http.HttpStatus;
 

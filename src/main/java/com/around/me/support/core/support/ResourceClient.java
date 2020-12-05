@@ -163,18 +163,6 @@ public class ResourceClient {
             }
         }
 
-        ResponseEntity<Response> response = null;
-
-//        HttpEntity request = this.getHttpEntity(paramMap, httpHeaders);
-/*
-        if (StringUtils.equals(method.toString(), HttpMethod.GET.toString())) {
-            response = restTemplate.getForEntity(uri, request, Response.class);
-        } else if (StringUtils.equals(method.toString(), HttpMethod.POST.toString())) {
-            response = restTemplate.postForEntity(uri, request, Response.class);
-        }*/
-
-
-
         HttpEntity httpEntity = this.getHttpEntity(paramMap, httpHeaders);
 
 
@@ -197,7 +185,8 @@ public class ResourceClient {
      */
     private HttpHeaders getHeader() {
         return HttpHeaderBuilder.builder()
-                .authorization(ResponseContextHolder.xAuthToken())
+                .xAuthToken(ResponseContextHolder.xAuthToken())
+                .xRefreshToken(ResponseContextHolder.xRefreshToken())
                 .build();
     }
 
