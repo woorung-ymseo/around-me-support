@@ -1,0 +1,9 @@
+server:
+    port: 8084
+
+service:
+    domain:
+        common: http://localhost:8082
+        user: http://localhost:8081
+        store: http://localhost:8083
+
