@@ -19,6 +19,11 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    compile.exclude module: 'spring-boot-starter-logging'
+}
+
+
 
 uploadArchives {
     repositories.mavenDeployer {
